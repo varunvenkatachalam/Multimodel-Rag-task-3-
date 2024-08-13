@@ -1,0 +1,9 @@
+PyPDF2 
+pdf2image 
+pinecone-client 
+sentence-transformers 
+pillow 
+requests 
+groq
+PyMuPDF
+faiss-cpu

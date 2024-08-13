@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="/" method="POST" enctype="multipart/form-data">
+    <label for="query">Enter your query:</label>
+    <input type="text" id="query" name="query" required>
+
+    <label for="pdf_file">Upload a PDF:</label>
+    <input type="file" id="pdf_file" name="pdf_file" required>
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

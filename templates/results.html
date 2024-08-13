@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Generated Response</h2>
+<p>{{ response }}</p>
+
+<h2>Relevant Text Excerpts</h2>
+<ul>
+    {% for text in relevant_text %}
+    <li>{{ text }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Relevant Images</h2>
+<ul>
+    {% for image in relevant_images %}
+    <li><img src="{{ url_for('static', filename='images/' ~ image) }}" alt="Relevant Image"></li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('index') }}">Back to Home</a>
+{% endblock %}

@@ -22,21 +22,24 @@ def index():
             # Process the query and PDF
             result_data = multi_modal_rag(pdf_path, query)
 
-            # Extract response data
-            response = result_data['response']
-            relevant_text = result_data['relevant_text']
-            relevant_images = result_data['relevant_images']
-
-            # Redirect to the results page with the data
-            return render_template('results.html', response=response, relevant_text=relevant_text, relevant_images=relevant_images)
+            # Pass the response and other details to the results page
+            return redirect(url_for('results', response=result_data['response'], 
+                                    relevant_text=result_data['relevant_text'], 
+                                    relevant_images=result_data['relevant_images']))
 
     return render_template('index.html')
 
 @app.route('/results')
 def results():
-    # This route would be used if you were passing data via query parameters, 
-    # but since we're directly rendering the results in the previous function, this is not needed.
-    return redirect(url_for('index'))
+    # Retrieve results to display
+    response = request.args.get('response')
+    relevant_text = request.args.getlist('relevant_text')
+    relevant_images = request.args.getlist('relevant_images')
+    print(response)
+
+    return render_template('results.html', response=response, 
+                           relevant_text=relevant_text, 
+                           relevant_images=relevant_images)
 
 if __name__ == '__main__':
     app.run(debug=True)
